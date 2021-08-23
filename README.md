@@ -177,17 +177,10 @@ How to start a new game
     $ mkdir build
     $ cd build
     $ cocos run --proj-dir .. -p [mac|win32|android|linux|ios]
-    
-警告⚠️: 编译时间很长，还有可能失败！可以先在 ios-build 目录下使用cmake生成 MyGame.xcodeproj文件，然后在xcode中编译。
-
- Create iOS simulator project：
-
- cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator
-
- Create iOS device project：
-
- cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos
-警告⚠️
+    警告⚠️: cocos run编译时间很长，还有可能失败！可以先在 ios-build 目录下使用cmake生成 MyGame.xcodeproj文件，然后在xcode中编译。
+    Create iOS simulator project： cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator
+    Create iOS device project： cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos
+    警告⚠️
  
 You can also create a Lua project with `-l lua`.
 
