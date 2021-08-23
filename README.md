@@ -113,6 +113,41 @@ $ cd cocos2d-x
 $ ./setup.py
 $ source FILE_TO_SAVE_SYSTEM_VARIABLE
 
+警告⚠️: 必须先修改 cocos2d-x/cmake/Modules/CocosConfigDepend.cmake 文件，否则 mac os 11.5上回报错！安装时，尽量选择cocos 2dx 安装包安装，能少很多坑！
+
+elseif(IOS)
+            # Locate system libraries on iOS
+            find_library(UIKIT_LIBRARY UIKit)
+            find_library(OPENGLES_LIBRARY OpenGLES)
+            find_library(CORE_MOTION_LIBRARY CoreMotion)
+            find_library(AVKIT_LIBRARY AVKit)
+            find_library(CORE_MEDIA_LIBRARY CoreMedia)
+            find_library(CORE_TEXT_LIBRARY CoreText)
+            find_library(SECURITY_LIBRARY Security)
+            find_library(CORE_GRAPHICS_LIBRARY CoreGraphics)
+            find_library(AV_FOUNDATION_LIBRARY AVFoundation)
+            find_library(WEBKIT_LIBRARY WebKit)
+find_library(ICONV_LIBRARY iconv)
+find_library(Z_LIBRARY z)
+            list(APPEND PLATFORM_SPECIFIC_LIBS
+                 ${UIKIT_LIBRARY}
+                 ${OPENGLES_LIBRARY}
+                 ${CORE_MOTION_LIBRARY}
+                 ${AVKIT_LIBRARY}
+                 ${CORE_MEDIA_LIBRARY}
+                 ${CORE_TEXT_LIBRARY}
+                 ${SECURITY_LIBRARY}
+                 ${CORE_GRAPHICS_LIBRARY}
+                 ${AV_FOUNDATION_LIBRARY}
+                 ${WEBKIT_LIBRARY}
+                 ${COCOS_APPLE_LIBS}
+${ICONV_LIBRARY}
+${Z_LIBRARY}
+                 #"/usr/lib/libz.dylib"
+                 #"/usr/lib/libiconv.dylib"
+                 
+警告⚠️
+
 ```
 
 Should invoke this script if using linux system
@@ -140,9 +175,19 @@ How to start a new game
     $ source FILE_TO_SAVE_SYSTEM_VARIABLE
     $ cocos new MyGame -p com.your_company.mygame -l cpp -d NEW_PROJECTS_DIR
     $ cd NEW_PROJECTS_DIR/MyGame
-    $ mkdir build
-    $ cd build
+    $ mkdir ios-build && cd ios-build
     $ cocos run --proj-dir .. -p [mac|win32|android|linux|ios]
+    
+警告⚠️: 编译时间很长，还有可能失败！可以先在 ios-build 目录下使用cmake生成 MyGame.xcodeproj文件，然后在xcode中编译。
+
+Create iOS simulator project：
+
+cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator
+
+Create iOS device project：
+
+cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos
+警告⚠️
 
 You can also create a Lua project with `-l lua`.
 
