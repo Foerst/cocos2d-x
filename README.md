@@ -113,7 +113,7 @@ $ cd cocos2d-x
 $ ./setup.py
 $ source FILE_TO_SAVE_SYSTEM_VARIABLE
 
-警告⚠️: 必须先修改 cocos2d-x/cmake/Modules/CocosConfigDepend.cmake 文件，否则 mac os 11.5上回报错！安装时，尽量选择cocos 2dx 安装包安装，能少很多坑！
+警告⚠️: 必须先修改 cocos2d-x/cmake/Modules/CocosConfigDepend.cmake 文件，否则 mac os 11.5上会报错！安装时，尽量选择cocos 2dx 安装包安装，能少很多坑！
 
  elseif(IOS)
              # Locate system libraries on iOS
